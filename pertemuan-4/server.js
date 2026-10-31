@@ -2,6 +2,17 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 
+// Easter egg opsional: muat modul lokal jika ada (file ini TIDAK ikut repo
+// karena di-gitignore sebagai *.local.js). Kalau tidak ada, bot memakai
+// balasan default "Maaf, saya tidak mengerti." seperti biasa.
+let aiFallback = null;
+try {
+    const mod = await import('./easter-egg.local.js');
+    aiFallback = mod.askGemini;
+} catch {
+    // Modul easter egg tidak tersedia -> abaikan
+}
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -34,7 +45,7 @@ app.post('/api/users', (req, res) => {
 io.on('connection', (socket) => {
     console.log(`User terhubung dengan socket id: ${socket.id}`);
 
-    socket.on('chat_message', (msg) => {
+    socket.on('chat_message', async (msg) => {
         console.log(`Pesan diterima dari ${socket.id}: ${msg}`);
 
         let reply = "";
@@ -46,6 +57,16 @@ io.on('connection', (socket) => {
             reply = "Saya tinggal di dalam Server Node.js.";
         } else if (lowerMsg.includes("kelas")) {
             reply = "Saya berada di kelas Pemrograman Jaringan.";
+        } else if (lowerMsg.includes("hobi")) {
+            // Eksperimen Langkah 7 #2: kata kunci baru "hobi"
+            reply = "Hobi saya adalah mendengarkan request dari jaringan.";
+        } else if (aiFallback) {
+            // Easter egg: di luar keyword -> tanya Gemini (modul lokal)
+            try {
+                reply = await aiFallback(msg);
+            } catch {
+                reply = "Maaf, saya tidak mengerti.";
+            }
         } else {
             reply = "Maaf, saya tidak mengerti.";
         }
@@ -61,7 +82,9 @@ io.on('connection', (socket) => {
 // 3. RPC
 const procedures = {
     add: (a, b) => a + b,
-    multiply: (a, b) => a * b
+    multiply: (a, b) => a * b,
+    subtract: (a, b) => a - b,
+    power: (a, b) => Math.pow(a, b)
 };
 
 app.post('/rpc', (req, res) => {

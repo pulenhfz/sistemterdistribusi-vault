@@ -5,6 +5,9 @@ yarn-debug.log*
 yarn-error.log*
 .env*
 
+# File lokal / rahasia (jangan di-push)
+*.local.js
+
 # Media
 *.mp4
 *.mov

@@ -48,12 +48,12 @@ async function testREST() {
         const postData = await postRes.json();
         console.log('POST /api/users Response:', postData);
     } catch (e) {
-        console.error('POST error:', e);
+        console.error('POST error:', e.message);
     }
 }
 
 //2. Pengujian RPC (Remote Procedure Call)
-async function test() {
+async function testRPC() {
     console.log('\n--- Menguji RPC (Remote Procedure Call) ---');
 
     try {
@@ -67,12 +67,25 @@ async function test() {
     } catch (e) {
         console.error('RPC error:', e.message);
     }
+
+    // Eksperimen Langkah 7 #1: uji prosedur power(2, 3)
+    try {
+        const res = await fetch(`${SERVER_URL}/rpc`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ procedure: 'power', args: [2, 3] })
+        });
+        const data = await res.json();
+        console.log('RPC result for power(2, 3):', data.result);
+    } catch (e) {
+        console.error('RPC power error:', e.message);
+    }
 }
 
 //3. Pengujian Socket.io chat Interaktif
 function testSocket() {
     console.log('\n--- Menguji Socket.io (Chat Interaktif) ---');
-    console.log('Ketik pertanyaan anda (misal: "Siapa nama kamu?", "Dimana alamat kamu?"). Ketik "exit" untuk untuk keluar.');
+    console.log('Ketik pertanyaan Anda (misal: "Siapa nama kamu?", "Dimana alamat kamu?"). Ketik "exit" untuk keluar.');
      const socket = io(SERVER_URL);
 
     //Konfigurasi modul readline untuk membaca input dari keyboard
@@ -123,7 +136,7 @@ function testSocket() {
 //Menjalankan semua pengujian secara berurutan
 async function runAll() {
     await testREST();
-    await test();
+    await testRPC();
     testSocket();
 }
 
