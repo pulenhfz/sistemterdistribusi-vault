@@ -8,7 +8,7 @@ _Arsip praktikum mata kuliah Sistem Terdistribusi — dari dasar Node.js sampai 
 [![Express.js](https://img.shields.io/badge/express.js-%23ffffff.svg?style=for-the-badge&logo=express&logoColor=000000)](https://expressjs.com/)
 [![Socket.IO](https://img.shields.io/badge/socket.io-%23ffffff.svg?style=for-the-badge&logo=socketdotio&logoColor=010101)](https://socket.io/)
 
-[Struktur](#struktur-repo) • [Prasyarat](#prasyarat) • [Menjalankan](#menjalankan) • [Teknologi](#teknologi) • [Kontributor](#kontributor) • [Lisensi](#lisensi)
+[Struktur](#struktur-repo) • [Prasyarat](#prasyarat) • [Detail](#detail-pertemuan) • [Teknologi](#teknologi) • [Kontributor](#kontributor) • [Lisensi](#lisensi)
 
 </div>
 
@@ -18,14 +18,24 @@ _Arsip praktikum mata kuliah Sistem Terdistribusi — dari dasar Node.js sampai 
 
 Repositori ini berisi kumpulan hasil praktikum **Sistem Terdistribusi** (Semester 5). Setiap pertemuan disimpan dalam folder terpisah agar mudah ditelusuri. Seluruh istilah dan output menggunakan Bahasa Indonesia.
 
+### Cara Clone
+
+```bash
+git clone https://github.com/pulenhfz/sistemterdistribusi-vault.git
+```
+
+Setelah repo di-clone, masuk ke folder pertemuan dan ikuti petunjuk di `README` masing-masing folder (berisi cara menjalankan). Setiap folder pertemuan punya `README.md` sendiri.
+
 ## Struktur Repo
 
 | Folder | Materi | Isi |
 | --- | --- | --- |
-| [`pertemuan-1/`](pertemuan-1) | Dasar JavaScript & Node.js | input/output, percabangan, perulangan, latihan (kalkulator, kasir, bilangan prima) |
-| [`pertemuan-2/`](pertemuan-2) | Fungsi & Async | function dasar, arrow function, callback, async callback, async/await + 3 tugas |
-| [`pertemuan-3/`](pertemuan-3) | HTTP Server | simulasi HTTP status code (1xx–5xx) dengan modul bawaan `node:http` |
-| [`pertemuan-4/`](pertemuan-4) | Express + Socket.IO + RPC | REST API, chat realtime, remote procedure call |
+| [`pertemuan-1/`](pertemuan-1/README.md) | Dasar JavaScript & Node.js | sintaks, input/output, percabangan, perulangan, latihan |
+| [`pertemuan-2/`](pertemuan-2/README.md) | Fungsi & Async | function dasar, arrow, callback, async/await, 3 tugas |
+| [`pertemuan-3/`](pertemuan-3/README.md) | HTTP Server | protokol HTTP, status code 1xx–5xx, `node:http` |
+| [`pertemuan-4/`](pertemuan-4/README.md) | Express + Socket.IO + RPC | REST API, chat realtime, remote procedure call |
+
+> Setiap folder punya `README` sendiri dengan instruksi cara menjalankan.
 
 ## Prasyarat
 
@@ -34,84 +44,53 @@ Repositori ini berisi kumpulan hasil praktikum **Sistem Terdistribusi** (Semeste
 
 > Lokal diuji pada Node.js v24.15.0.
 
-## Menjalankan
+## Detail Pertemuan
 
-### Pertemuan 1 — Dasar JavaScript
+Penjelasan materi per pertemuan, bukan cara menjalankan — cara menjalankan ada di `README` masing-masing folder.
 
-Tanpa dependensi. Pilih file yang mau dijalankan:
+### Pertemuan 1 — Dasar JavaScript & Node.js
+Materi pengenalan sintaks JS di runtime Node.js.
 
-```bash
-node pertemuan-1/hello.js
-node pertemuan-1/input_output.js
-node pertemuan-1/percabangan.js
-node pertemuan-1/perulangan.js
-node pertemuan-1/latihan1_kalkulator.js
-node pertemuan-1/latihan2_kasir.js
-node pertemuan-1/latihan3_prima.js
-node pertemuan-1/latihan.js
-```
+| # | File | Materi |
+| --- | --- | --- |
+| 1 | `hello.js` | Hello world pertama |
+| 2 | `input_output.js` | Input/output konsol |
+| 3 | `percabangan.js` | `if/else`, switch |
+| 4 | `perulangan.js` | `for`, `while`, `do-while` |
+| 5 | `latihan1_kalkulator.js` | operasi aritmatika |
+| 6 | `latihan2_kasir.js` | logika kasir sederhana |
+| 7 | `latihan3_prima.js` | cek bilangan prima |
+| 8 | `latihan.js` | latihan gabungan |
 
 ### Pertemuan 2 — Fungsi & Async
 
-```bash
-node pertemuan-2/01_function_dasar.js
-node pertemuan-2/02_arrow_function.js
-node pertemuan-2/03_callback.js
-node pertemuan-2/04_async_callback.js
-node pertemuan-2/05_async_await_readline.js
-node pertemuan-2/tugas1.js
-node pertemuan-2/tugas2.js
-node pertemuan-2/tugas3.js
-```
+Dari function dasar sampai pola async/await.
+
+| # | File | Materi |
+| --- | --- | --- |
+| 1 | `01_function_dasar.js` | function declaration |
+| 2 | `02_arrow_function.js` | arrow function |
+| 3 | `03_callback.js` | pola callback |
+| 4 | `04_async_callback.js` | async + callback |
+| 5 | `05_async_await_readline.js` | async/await dengan readline |
+| 6 | `tugas1.js` | konversi suhu (C↔F) |
+| 7 | `tugas2.js` | simulasi autentikasi asinkron (Promise) |
+| 8 | `tugas3.js` | CLI kasir produk asinkron (readline/promises) |
 
 ### Pertemuan 3 — HTTP Server
 
-```bash
-cd pertemuan-3
-node server.js        # term 1: jalankan server (port 3000)
-node client.js        # term 2: jalankan test — ubah hostname di client.js jadi IP server
-```
+Implementasi HTTP server dengan modul bawaan `node:http`. Belajar struktur request/response, HTTP status code (1xx–5xx), dan redirect.
 
-Uji di browser: <http://localhost:3000/status> atau endpoint lain.
+- `server.js` — HTTP server dengan endpoint simulasi status code
+- `client.js` — test otomatis memanggil server
 
 ### Pertemuan 4 — Express + Socket.IO + RPC
 
-```bash
-cd pertemuan-4
-npm install
-node server.js        # term 1: server di port 3000
-node client.js        # term 2: client lokal, atau client.js http://IP:3000 dari laptop lain
-```
+Implementasi tiga pola komunikasi dalam satu server: REST API dengan Express, chat realtime dengan Socket.IO, dan remote procedure call (RPC).
 
-Uji di browser: <http://localhost:3000/api/users>.
-
-## Detail Endpoint
-
-### Pertemuan 3 — Simulasi HTTP status code
-
-| Endpoint | Method | Kode |
-| --- | --- | --- |
-| `/` | GET | 200 |
-| `/about` | GET | 200 |
-| `/status` | GET | 200 |
-| `/status/102` | GET | 102 (interim) → 200 |
-| `/status/200` | GET | 200 |
-| `/status/201` | POST | 201 |
-| `/status/301` | GET | 301 → `/status/200` |
-| `/status/302` | GET | 302 → `/about` |
-| `/status/400` | GET | 400 |
-| `/status/404` | GET | 404 |
-| `/status/500` | GET | 500 |
-
-### Pertemuan 4 — Express + Socket.IO + RPC
-
-| Endpoint / Event | Method | Fungsi |
-| --- | --- | --- |
-| `/api/users` | GET | ambil daftar user |
-| `/api/users` | POST | tambah user (body JSON `{ id, name }`) |
-| `/rpc` | POST | panggil prosedur `add` / `multiply` |
-| `chat_message` | Socket.IO | kirim pesan ke server |
-| `chat_reply` | Socket.IO | jawaban bot dari server |
+- REST: `GET/POST /api/users`
+- Socket.IO: event `chat_message` → `chat_reply`
+- RPC: `POST /rpc` dengan prosedur `add` dan `multiply`
 
 ## Teknologi
 
@@ -122,12 +101,9 @@ Uji di browser: <http://localhost:3000/api/users>.
 ## Kontributor
 
 - **Ibnu Hafiz Asqolani** — NIM **24SA31A023**
-- GitHub: [pulenhfz](https://github.com/pulenhfz)
 
 ## Lisensi
 
 Didistribusikan di bawah [Lisensi MIT](LICENSE).
 
 ---
-
-**Kembali ke atas** [↑](#sistem-terdistribusi)
