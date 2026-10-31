@@ -2,9 +2,9 @@
 
 _Arsip praktikum mata kuliah Sistem Terdistribusi — dari dasar Node.js sampai komunikasi realtime berbasis Socket.IO._
 
-[![Node.js](https://img.shields.io/badge/node.js-%236DA55F.svg?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/express.js-%23000000.svg?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![Socket.IO](https://img.shields.io/badge/socket.io-%23010101.svg?style=for-the-badge&logo=socketdotio&logoColor=white)](https://socket.io/)
+[![Node.js](https://img.shields.io/badge/node.js-%23ffffff.svg?style=for-the-badge&logo=node.js&logoColor=339933)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/express.js-%23ffffff.svg?style=for-the-badge&logo=express&logoColor=000000)](https://expressjs.com/)
+[![Socket.IO](https://img.shields.io/badge/socket.io-%23ffffff.svg?style=for-the-badge&logo=socketdotio&logoColor=010101)](https://socket.io/)
 
 [Struktur](#struktur-repo) • [Prasyarat](#prasyarat) • [Menjalankan](#menjalankan) • [Teknologi](#teknologi) • [Kontributor](#kontributor) • [Lisensi](#lisensi)
 
