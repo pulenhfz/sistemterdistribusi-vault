@@ -1,3 +1,5 @@
+<div align="center">
+
 # Sistem Terdistribusi
 
 _Arsip praktikum mata kuliah Sistem Terdistribusi — dari dasar Node.js sampai komunikasi realtime berbasis Socket.IO._
@@ -8,13 +10,13 @@ _Arsip praktikum mata kuliah Sistem Terdistribusi — dari dasar Node.js sampai 
 
 [Struktur](#struktur-repo) • [Prasyarat](#prasyarat) • [Menjalankan](#menjalankan) • [Teknologi](#teknologi) • [Kontributor](#kontributor) • [Lisensi](#lisensi)
 
+</div>
+
 ---
 
 ## Tentang
 
 Repositori ini berisi kumpulan hasil praktikum **Sistem Terdistribusi** (Semester 5). Setiap pertemuan disimpan dalam folder terpisah agar mudah ditelusuri. Seluruh istilah dan output menggunakan Bahasa Indonesia.
-
-Untuk penjelasan visual, lihat file demo yang berada di luar repo (video `Prak3.mp4`, `Desain tanpa judul.mp4`).
 
 ## Struktur Repo
 
