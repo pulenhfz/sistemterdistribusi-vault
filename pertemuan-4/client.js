@@ -4,7 +4,26 @@ import readline from 'readline';
 // Make it flexible
 // - Default: localhost
 // - For 2 laptops: node client.js http://IP_SERVER:3000
-const SERVER_URL = process.argv[2] || 'http://localhost:3000';
+// - Bare IP also works (scheme + port added automatically):
+//   node client.js 10.36.60.5
+let SERVER_URL = process.argv[2] || 'localhost';
+SERVER_URL = SERVER_URL.trim();
+
+// Tambahkan skema http:// jika belum ada
+if (!/^https?:\/\//i.test(SERVER_URL)) {
+    SERVER_URL = 'http://' + SERVER_URL;
+}
+
+// Tambahkan port default 3000 jika belum ada
+try {
+    const u = new URL(SERVER_URL);
+    if (!u.port) {
+        u.port = '3000';
+    }
+    SERVER_URL = u.toString().replace(/\/$/, '');
+} catch {
+    // Biarkan tetap sebagai string jika tidak valid
+}
 
 //1. Pengujian REST API (GET dan POST)
 async function testREST() {
@@ -61,6 +80,14 @@ function testSocket() {
         input: process.stdin,
         output: process.stdout
     });
+
+    //Dipakai agar promptInput() tidak dipanggil setelah readline ditutup
+    let rlClosed = false;
+    rl.on('close', () => {
+        rlClosed = true;
+        socket.disconnect();   //Tutup socket juga (mis. Ctrl+C / EOF) agar proses bisa keluar
+    });
+
       socket.on('connect', () => {
         console.log(`\n[Socket] Berhasil terhubung ke server. (ID: ${socket.id})`);
         promptInput();
@@ -79,6 +106,7 @@ function testSocket() {
 
     //Fungsi loop input terminal
     function promptInput(){
+        if (rlClosed) return;   //Jangan tanya lagi jika input sudah ditutup (mis. "exit" / Ctrl+C)
         rl.question('Anda: ', (input) =>{
             if (input.trim().toLowerCase() === 'exit') {
                 console.log('Memutuskan koneksi socket...');
